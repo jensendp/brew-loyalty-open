@@ -10,6 +10,7 @@ import {
   View,
 } from 'react-native'
 import { useAuth } from '../../src/lib/providers'
+import { theme } from '../../src/config/theme'
 
 export default function SignInScreen() {
   const auth = useAuth()
@@ -60,7 +61,7 @@ export default function SignInScreen() {
       <TextInput
         style={styles.input}
         placeholder="you@example.com"
-        placeholderTextColor="#999"
+        placeholderTextColor={theme.colors.textPlaceholder}
         value={email}
         onChangeText={setEmail}
         autoCapitalize="none"
@@ -78,7 +79,7 @@ export default function SignInScreen() {
         disabled={loading || !email.trim()}
       >
         {loading ? (
-          <ActivityIndicator color="#fff" />
+          <ActivityIndicator color={theme.colors.primaryForeground} />
         ) : (
           <Text style={styles.buttonText}>Send magic link</Text>
         )}
@@ -92,47 +93,47 @@ const styles = StyleSheet.create({
     flex: 1,
     justifyContent: 'center',
     alignItems: 'center',
-    padding: 32,
-    backgroundColor: '#fafaf8',
+    padding: theme.spacing.xxl,
+    backgroundColor: theme.colors.background,
   },
   emoji: {
     fontSize: 56,
-    marginBottom: 16,
+    marginBottom: theme.spacing.md,
   },
   title: {
     fontSize: 28,
     fontWeight: '700',
-    color: '#1a1a1a',
-    marginBottom: 8,
+    color: theme.colors.textPrimary,
+    marginBottom: theme.spacing.xs,
   },
   subtitle: {
     fontSize: 16,
-    color: '#666',
+    color: theme.colors.textSecondary,
     textAlign: 'center',
-    marginBottom: 32,
+    marginBottom: theme.spacing.xxl,
     lineHeight: 22,
   },
   emailText: {
     fontWeight: '600',
-    color: '#1a1a1a',
+    color: theme.colors.textPrimary,
   },
   input: {
     width: '100%',
     height: 52,
-    backgroundColor: '#fff',
-    borderRadius: 12,
+    backgroundColor: theme.colors.surface,
+    borderRadius: theme.radius.md,
     borderWidth: 1,
-    borderColor: '#ddd',
-    paddingHorizontal: 16,
+    borderColor: theme.colors.borderInput,
+    paddingHorizontal: theme.spacing.md,
     fontSize: 16,
-    color: '#1a1a1a',
-    marginBottom: 16,
+    color: theme.colors.textPrimary,
+    marginBottom: theme.spacing.md,
   },
   button: {
     width: '100%',
     height: 52,
-    backgroundColor: '#1a1a1a',
-    borderRadius: 12,
+    backgroundColor: theme.colors.primary,
+    borderRadius: theme.radius.md,
     justifyContent: 'center',
     alignItems: 'center',
   },
@@ -140,19 +141,19 @@ const styles = StyleSheet.create({
     opacity: 0.5,
   },
   buttonText: {
-    color: '#fff',
+    color: theme.colors.primaryForeground,
     fontSize: 16,
     fontWeight: '600',
   },
   error: {
-    color: '#c0392b',
+    color: theme.colors.error,
     fontSize: 14,
-    marginBottom: 12,
+    marginBottom: theme.spacing.sm,
     textAlign: 'center',
   },
   resendLink: {
-    marginTop: 24,
-    color: '#666',
+    marginTop: theme.spacing.xl,
+    color: theme.colors.textSecondary,
     fontSize: 14,
     textDecorationLine: 'underline',
   },

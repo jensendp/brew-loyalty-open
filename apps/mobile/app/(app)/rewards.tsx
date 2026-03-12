@@ -4,6 +4,7 @@
  * TODO Phase 4: load real rewards via useServices().programs.getRewardCatalog()
  */
 import { ScrollView, StyleSheet, Text, TouchableOpacity, View } from 'react-native'
+import { theme } from '../../src/config/theme'
 
 // Placeholder data matching our Ironwood demo seed
 const DEMO_REWARDS = [
@@ -59,45 +60,45 @@ export default function RewardsScreen() {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#fafaf8',
+    backgroundColor: theme.colors.background,
   },
   content: {
-    padding: 20,
+    padding: theme.spacing.lg,
     paddingBottom: 40,
   },
   balanceBanner: {
-    backgroundColor: '#1a1a1a',
-    borderRadius: 16,
-    padding: 20,
+    backgroundColor: theme.colors.primary,
+    borderRadius: theme.radius.lg,
+    padding: theme.spacing.lg,
     alignItems: 'center',
-    marginBottom: 24,
+    marginBottom: theme.spacing.xl,
   },
   balanceLabel: {
-    color: '#aaa',
+    color: theme.colors.textFaint,
     fontSize: 13,
     marginBottom: 4,
   },
   balanceValue: {
-    color: '#fff',
+    color: theme.colors.primaryForeground,
     fontSize: 48,
     fontWeight: '800',
   },
   sectionTitle: {
     fontSize: 17,
     fontWeight: '600',
-    color: '#1a1a1a',
-    marginBottom: 16,
+    color: theme.colors.textPrimary,
+    marginBottom: theme.spacing.md,
   },
   rewardCard: {
-    backgroundColor: '#fff',
-    borderRadius: 12,
-    padding: 16,
-    marginBottom: 12,
+    backgroundColor: theme.colors.surface,
+    borderRadius: theme.radius.md,
+    padding: theme.spacing.md,
+    marginBottom: theme.spacing.sm,
     borderWidth: 1,
-    borderColor: '#eee',
+    borderColor: theme.colors.border,
     flexDirection: 'row',
     alignItems: 'center',
-    gap: 12,
+    gap: theme.spacing.sm,
   },
   rewardIcon: {
     fontSize: 32,
@@ -108,40 +109,40 @@ const styles = StyleSheet.create({
   rewardName: {
     fontSize: 15,
     fontWeight: '600',
-    color: '#1a1a1a',
+    color: theme.colors.textPrimary,
     marginBottom: 2,
   },
   rewardDescription: {
     fontSize: 12,
-    color: '#888',
+    color: theme.colors.textMuted,
     marginBottom: 4,
   },
   rewardCost: {
     fontSize: 13,
     fontWeight: '700',
-    color: '#444',
+    color: theme.colors.textSecondary,
   },
   redeemButton: {
-    backgroundColor: '#1a1a1a',
-    borderRadius: 8,
+    backgroundColor: theme.colors.primary,
+    borderRadius: theme.radius.sm,
     paddingHorizontal: 14,
-    paddingVertical: 8,
+    paddingVertical: theme.spacing.xs,
   },
   redeemButtonDisabled: {
-    backgroundColor: '#f0f0ee',
+    backgroundColor: theme.colors.surfaceDisabled,
   },
   redeemButtonText: {
-    color: '#fff',
+    color: theme.colors.primaryForeground,
     fontSize: 13,
     fontWeight: '600',
   },
   redeemButtonTextDisabled: {
-    color: '#bbb',
+    color: theme.colors.textFaint,
   },
   footnote: {
     fontSize: 12,
-    color: '#bbb',
+    color: theme.colors.textFaint,
     textAlign: 'center',
-    marginTop: 12,
+    marginTop: theme.spacing.sm,
   },
 })

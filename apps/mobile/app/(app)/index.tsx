@@ -6,6 +6,7 @@
 import { ActivityIndicator, ScrollView, StyleSheet, Text, TouchableOpacity, View } from 'react-native'
 import { useAuth } from '../../src/lib/providers'
 import { useHomeData } from '../../src/hooks/useHomeData'
+import { theme } from '../../src/config/theme'
 
 export default function HomeScreen() {
   const auth = useAuth()
@@ -14,13 +15,13 @@ export default function HomeScreen() {
   if (loading) {
     return (
       <View style={styles.centered}>
-        <ActivityIndicator size="large" color="#1a1a1a" />
+        <ActivityIndicator size="large" color={theme.colors.primary} />
       </View>
     )
   }
 
   const tierName = enrollment?.currentTier?.name ?? 'Member'
-  const tierColor = enrollment?.currentTier?.color ?? '#888'
+  const tierColor = enrollment?.currentTier?.color ?? theme.colors.textMuted
   const displayName = profile?.displayName ?? 'Member'
 
   return (
@@ -28,7 +29,9 @@ export default function HomeScreen() {
       {/* Header */}
       <View style={styles.header}>
         <Text style={styles.greeting}>Hey, {displayName} 👋</Text>
-        <Text style={styles.orgName}>{enrollment ? 'Ironwood Rewards' : 'No program joined'}</Text>
+        <Text style={styles.orgName}>
+          {enrollment ? 'Ironwood Rewards' : 'No program joined'}
+        </Text>
       </View>
 
       {/* Points Card */}
@@ -87,49 +90,49 @@ const styles = StyleSheet.create({
     flex: 1,
     justifyContent: 'center',
     alignItems: 'center',
-    backgroundColor: '#fafaf8',
+    backgroundColor: theme.colors.background,
   },
   container: {
     flex: 1,
-    backgroundColor: '#fafaf8',
+    backgroundColor: theme.colors.background,
   },
   content: {
-    padding: 20,
+    padding: theme.spacing.lg,
     paddingBottom: 40,
   },
   header: {
-    marginBottom: 24,
+    marginBottom: theme.spacing.xl,
   },
   greeting: {
     fontSize: 24,
     fontWeight: '700',
-    color: '#1a1a1a',
+    color: theme.colors.textPrimary,
   },
   orgName: {
     fontSize: 14,
-    color: '#888',
+    color: theme.colors.textMuted,
     marginTop: 2,
   },
   pointsCard: {
-    backgroundColor: '#1a1a1a',
-    borderRadius: 16,
-    padding: 24,
-    marginBottom: 16,
+    backgroundColor: theme.colors.primary,
+    borderRadius: theme.radius.lg,
+    padding: theme.spacing.xl,
+    marginBottom: theme.spacing.md,
     alignItems: 'center',
   },
   pointsLabel: {
-    color: '#aaa',
+    color: theme.colors.textFaint,
     fontSize: 14,
     marginBottom: 4,
   },
   pointsValue: {
-    color: '#fff',
+    color: theme.colors.primaryForeground,
     fontSize: 56,
     fontWeight: '800',
     lineHeight: 64,
   },
   pointsHint: {
-    color: '#888',
+    color: theme.colors.textMuted,
     fontSize: 12,
     marginTop: 4,
   },
@@ -137,21 +140,21 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     justifyContent: 'space-between',
     alignItems: 'center',
-    backgroundColor: '#fff',
-    borderRadius: 12,
-    padding: 16,
-    marginBottom: 16,
+    backgroundColor: theme.colors.surface,
+    borderRadius: theme.radius.md,
+    padding: theme.spacing.md,
+    marginBottom: theme.spacing.md,
     borderWidth: 1,
-    borderColor: '#eee',
+    borderColor: theme.colors.border,
   },
   tierLabel: {
     fontSize: 14,
-    color: '#666',
+    color: theme.colors.textSecondary,
     fontWeight: '500',
   },
   tierBadge: {
-    borderRadius: 8,
-    paddingHorizontal: 12,
+    borderRadius: theme.radius.sm,
+    paddingHorizontal: theme.spacing.sm,
     paddingVertical: 4,
   },
   tierBadgeText: {
@@ -159,54 +162,54 @@ const styles = StyleSheet.create({
     fontWeight: '700',
   },
   section: {
-    marginTop: 8,
+    marginTop: theme.spacing.xs,
   },
   sectionTitle: {
     fontSize: 16,
     fontWeight: '600',
-    color: '#1a1a1a',
-    marginBottom: 12,
+    color: theme.colors.textPrimary,
+    marginBottom: theme.spacing.sm,
   },
   activityRow: {
     flexDirection: 'row',
     justifyContent: 'space-between',
     alignItems: 'center',
-    backgroundColor: '#fff',
+    backgroundColor: theme.colors.surface,
     borderRadius: 10,
     padding: 14,
-    marginBottom: 8,
+    marginBottom: theme.spacing.xs,
     borderWidth: 1,
-    borderColor: '#eee',
+    borderColor: theme.colors.border,
   },
   activityLabel: {
     fontSize: 14,
     fontWeight: '500',
-    color: '#1a1a1a',
+    color: theme.colors.textPrimary,
   },
   activityDate: {
     fontSize: 12,
-    color: '#aaa',
+    color: theme.colors.textFaint,
     marginTop: 2,
   },
   activityPoints: {
     fontSize: 14,
     fontWeight: '700',
-    color: '#2d7d46',
+    color: theme.colors.accent,
   },
   placeholder: {
     fontSize: 14,
-    color: '#aaa',
+    color: theme.colors.textFaint,
     textAlign: 'center',
-    marginTop: 24,
+    marginTop: theme.spacing.xl,
     lineHeight: 20,
   },
   signOutButton: {
     marginTop: 32,
-    padding: 16,
+    padding: theme.spacing.md,
     alignItems: 'center',
   },
   signOutText: {
-    color: '#aaa',
+    color: theme.colors.textFaint,
     fontSize: 14,
   },
 })

@@ -16,6 +16,7 @@ import {
 } from 'react-native'
 import { useEnrollment } from '../../src/hooks/useEnrollment'
 import { useSession } from '../../src/hooks/useSession'
+import { theme } from '../../src/config/theme'
 
 export default function EnrollScreen() {
   const router = useRouter()
@@ -36,7 +37,6 @@ export default function EnrollScreen() {
 
   async function handleJoin() {
     if (!validate() || !session) return
-    // The profile id equals the auth user id
     const enrollment = await joinByCode(code, session.userId)
     if (enrollment) {
       router.replace('/(app)')
@@ -60,7 +60,7 @@ export default function EnrollScreen() {
           <TextInput
             style={[styles.input, codeError ? styles.inputError : null]}
             placeholder="e.g. IRONWOOD"
-            placeholderTextColor="#bbb"
+            placeholderTextColor={theme.colors.textPlaceholder}
             autoCapitalize="characters"
             autoCorrect={false}
             autoFocus
@@ -93,78 +93,78 @@ export default function EnrollScreen() {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#fafaf8',
+    backgroundColor: theme.colors.background,
   },
   inner: {
     flex: 1,
-    padding: 32,
+    padding: theme.spacing.xxl,
     justifyContent: 'center',
   },
   emoji: {
     fontSize: 48,
-    marginBottom: 16,
+    marginBottom: theme.spacing.md,
   },
   title: {
     fontSize: 28,
     fontWeight: '800',
-    color: '#1a1a1a',
-    marginBottom: 8,
+    color: theme.colors.textPrimary,
+    marginBottom: theme.spacing.xs,
   },
   subtitle: {
     fontSize: 16,
-    color: '#666',
+    color: theme.colors.textSecondary,
     marginBottom: 40,
     lineHeight: 22,
   },
   fieldGroup: {
-    marginBottom: 24,
+    marginBottom: theme.spacing.xl,
   },
   label: {
     fontSize: 14,
     fontWeight: '600',
-    color: '#333',
-    marginBottom: 8,
+    color: theme.colors.textPrimary,
+    marginBottom: theme.spacing.xs,
   },
   input: {
     borderWidth: 1.5,
-    borderColor: '#ddd',
-    borderRadius: 12,
-    paddingHorizontal: 16,
+    borderColor: theme.colors.borderInput,
+    borderRadius: theme.radius.md,
+    paddingHorizontal: theme.spacing.md,
     paddingVertical: 14,
     fontSize: 20,
     fontWeight: '700',
     letterSpacing: 3,
-    color: '#1a1a1a',
-    backgroundColor: '#fff',
+    color: theme.colors.textPrimary,
+    backgroundColor: theme.colors.surface,
     textAlign: 'center',
   },
   inputError: {
-    borderColor: '#e53e3e',
+    borderColor: theme.colors.error,
   },
   errorText: {
     fontSize: 13,
-    color: '#e53e3e',
+    color: theme.colors.error,
     marginTop: 6,
     textAlign: 'center',
   },
   button: {
-    backgroundColor: '#1a1a1a',
-    borderRadius: 14,
+    backgroundColor: theme.colors.primary,
+    borderRadius: theme.radius.button,
     paddingVertical: 18,
     alignItems: 'center',
-    marginBottom: 20,
+    marginBottom: theme.spacing.lg,
   },
   buttonDisabled: {
     opacity: 0.5,
   },
   buttonText: {
-    color: '#fff',
+    color: theme.colors.primaryForeground,
     fontSize: 16,
     fontWeight: '700',
   },
   hint: {
     fontSize: 13,
-    color: '#aaa',
+    color: theme.colors.textFaint,
     textAlign: 'center',
     lineHeight: 20,
   },

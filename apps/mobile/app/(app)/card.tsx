@@ -3,8 +3,9 @@
  * Shows the member's QR code for staff to scan at point-of-sale.
  * TODO Phase 2: generate real QR code using member enrollment ID
  */
-import { StyleSheet, Text, View } from 'react-native'
+import { Platform, StyleSheet, Text, View } from 'react-native'
 import { useSession } from '../../src/hooks/useSession'
+import { theme } from '../../src/config/theme'
 
 export default function CardScreen() {
   const { session } = useSession()
@@ -38,68 +39,66 @@ export default function CardScreen() {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#fafaf8',
-    padding: 24,
+    backgroundColor: theme.colors.background,
+    padding: theme.spacing.xl,
     alignItems: 'center',
   },
   title: {
     fontSize: 22,
     fontWeight: '700',
-    color: '#1a1a1a',
+    color: theme.colors.textPrimary,
     marginBottom: 4,
   },
   subtitle: {
     fontSize: 14,
-    color: '#888',
-    marginBottom: 32,
+    color: theme.colors.textMuted,
+    marginBottom: theme.spacing.xxl,
     textAlign: 'center',
   },
   qrPlaceholder: {
     width: 220,
     height: 220,
-    backgroundColor: '#fff',
-    borderRadius: 16,
+    backgroundColor: theme.colors.surface,
+    borderRadius: theme.radius.lg,
     borderWidth: 1,
-    borderColor: '#eee',
+    borderColor: theme.colors.border,
     justifyContent: 'center',
     alignItems: 'center',
-    marginBottom: 32,
+    marginBottom: theme.spacing.xxl,
   },
   qrEmoji: {
     fontSize: 96,
-    color: '#1a1a1a',
+    color: theme.colors.textPrimary,
   },
   qrNote: {
     fontSize: 12,
-    color: '#aaa',
-    marginTop: 8,
+    color: theme.colors.textFaint,
+    marginTop: theme.spacing.xs,
   },
   infoCard: {
     width: '100%',
-    backgroundColor: '#fff',
-    borderRadius: 12,
-    padding: 16,
-    marginBottom: 12,
+    backgroundColor: theme.colors.surface,
+    borderRadius: theme.radius.md,
+    padding: theme.spacing.md,
+    marginBottom: theme.spacing.sm,
     borderWidth: 1,
-    borderColor: '#eee',
+    borderColor: theme.colors.border,
   },
   infoLabel: {
     fontSize: 11,
-    color: '#999',
+    color: theme.colors.textPlaceholder,
     textTransform: 'uppercase',
     letterSpacing: 0.5,
     marginBottom: 2,
   },
   infoValue: {
     fontSize: 16,
-    color: '#1a1a1a',
+    color: theme.colors.textPrimary,
     fontWeight: '500',
   },
   infoValueMono: {
     fontSize: 13,
-    color: '#555',
+    color: theme.colors.textSecondary,
     fontFamily: Platform.OS === 'ios' ? 'Courier' : 'monospace',
   },
 })
-
-import { Platform } from 'react-native'

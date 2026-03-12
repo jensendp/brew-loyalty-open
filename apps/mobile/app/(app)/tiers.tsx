@@ -4,6 +4,7 @@
  * TODO Phase 3: load real tier data via useServices().programs.getTiers()
  */
 import { ScrollView, StyleSheet, Text, View } from 'react-native'
+import { theme } from '../../src/config/theme'
 
 // Placeholder data matching our Ironwood demo seed
 const DEMO_TIERS = [
@@ -108,40 +109,40 @@ export default function TiersScreen() {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#fafaf8',
+    backgroundColor: theme.colors.background,
   },
   content: {
-    padding: 20,
+    padding: theme.spacing.lg,
     paddingBottom: 40,
   },
   intro: {
     fontSize: 15,
-    color: '#666',
-    marginBottom: 20,
+    color: theme.colors.textSecondary,
+    marginBottom: theme.spacing.lg,
     lineHeight: 22,
   },
   tierCard: {
-    backgroundColor: '#fff',
-    borderRadius: 16,
-    padding: 20,
-    marginBottom: 16,
+    backgroundColor: theme.colors.surface,
+    borderRadius: theme.radius.lg,
+    padding: theme.spacing.lg,
+    marginBottom: theme.spacing.md,
     borderWidth: 1,
-    borderColor: '#eee',
+    borderColor: theme.colors.border,
   },
   tierCardCurrent: {
-    borderColor: '#1a1a1a',
+    borderColor: theme.colors.primary,
     borderWidth: 2,
   },
   currentBadge: {
     alignSelf: 'flex-start',
-    backgroundColor: '#1a1a1a',
-    borderRadius: 6,
-    paddingHorizontal: 8,
+    backgroundColor: theme.colors.primary,
+    borderRadius: theme.radius.xs,
+    paddingHorizontal: theme.spacing.xs,
     paddingVertical: 3,
-    marginBottom: 12,
+    marginBottom: theme.spacing.sm,
   },
   currentBadgeText: {
-    color: '#fff',
+    color: theme.colors.primaryForeground,
     fontSize: 11,
     fontWeight: '600',
     textTransform: 'uppercase',
@@ -150,11 +151,11 @@ const styles = StyleSheet.create({
   tierHeader: {
     flexDirection: 'row',
     alignItems: 'center',
-    marginBottom: 8,
+    marginBottom: theme.spacing.xs,
   },
   tierIcon: {
     fontSize: 32,
-    marginRight: 12,
+    marginRight: theme.spacing.sm,
   },
   tierMeta: {
     flex: 1,
@@ -165,13 +166,13 @@ const styles = StyleSheet.create({
   },
   tierCost: {
     fontSize: 13,
-    color: '#888',
+    color: theme.colors.textMuted,
     marginTop: 1,
   },
   tierDescription: {
     fontSize: 14,
-    color: '#666',
-    marginBottom: 12,
+    color: theme.colors.textSecondary,
+    marginBottom: theme.spacing.sm,
     lineHeight: 20,
   },
   perksContainer: {
@@ -180,24 +181,24 @@ const styles = StyleSheet.create({
   perkRow: {
     flexDirection: 'row',
     alignItems: 'flex-start',
-    gap: 8,
+    gap: theme.spacing.xs,
   },
   perkBullet: {
     fontSize: 13,
-    color: '#4CAF50',
+    color: theme.colors.accent,
     fontWeight: '700',
     marginTop: 1,
   },
   perkText: {
     fontSize: 13,
-    color: '#444',
+    color: theme.colors.textSecondary,
     flex: 1,
     lineHeight: 18,
   },
   footnote: {
     fontSize: 12,
-    color: '#bbb',
+    color: theme.colors.textFaint,
     textAlign: 'center',
-    marginTop: 8,
+    marginTop: theme.spacing.xs,
   },
 })

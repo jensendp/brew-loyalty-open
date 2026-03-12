@@ -15,6 +15,7 @@ import {
   View,
 } from 'react-native'
 import { useProfile } from '../../src/hooks/useProfile'
+import { theme } from '../../src/config/theme'
 
 export default function ProfileScreen() {
   const router = useRouter()
@@ -59,7 +60,7 @@ export default function ProfileScreen() {
           <TextInput
             style={[styles.input, nameError ? styles.inputError : null]}
             placeholder="e.g. Alex Brewer"
-            placeholderTextColor="#bbb"
+            placeholderTextColor={theme.colors.textPlaceholder}
             autoCapitalize="words"
             autoFocus
             value={displayName}
@@ -73,7 +74,7 @@ export default function ProfileScreen() {
           <TextInput
             style={styles.input}
             placeholder="YYYY-MM-DD"
-            placeholderTextColor="#bbb"
+            placeholderTextColor={theme.colors.textPlaceholder}
             keyboardType="numbers-and-punctuation"
             value={birthday}
             onChangeText={setBirthday}
@@ -100,73 +101,73 @@ export default function ProfileScreen() {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#fafaf8',
+    backgroundColor: theme.colors.background,
   },
   inner: {
     flex: 1,
-    padding: 32,
+    padding: theme.spacing.xxl,
     justifyContent: 'center',
   },
   emoji: {
     fontSize: 48,
-    marginBottom: 16,
+    marginBottom: theme.spacing.md,
   },
   title: {
     fontSize: 28,
     fontWeight: '800',
-    color: '#1a1a1a',
-    marginBottom: 8,
+    color: theme.colors.textPrimary,
+    marginBottom: theme.spacing.xs,
   },
   subtitle: {
     fontSize: 16,
-    color: '#666',
+    color: theme.colors.textSecondary,
     marginBottom: 40,
     lineHeight: 22,
   },
   fieldGroup: {
-    marginBottom: 24,
+    marginBottom: theme.spacing.xl,
   },
   label: {
     fontSize: 14,
     fontWeight: '600',
-    color: '#333',
-    marginBottom: 8,
+    color: theme.colors.textPrimary,
+    marginBottom: theme.spacing.xs,
   },
   input: {
     borderWidth: 1.5,
-    borderColor: '#ddd',
-    borderRadius: 12,
-    paddingHorizontal: 16,
+    borderColor: theme.colors.borderInput,
+    borderRadius: theme.radius.md,
+    paddingHorizontal: theme.spacing.md,
     paddingVertical: 14,
     fontSize: 16,
-    color: '#1a1a1a',
-    backgroundColor: '#fff',
+    color: theme.colors.textPrimary,
+    backgroundColor: theme.colors.surface,
   },
   inputError: {
-    borderColor: '#e53e3e',
+    borderColor: theme.colors.error,
   },
   hint: {
     fontSize: 12,
-    color: '#aaa',
+    color: theme.colors.textFaint,
     marginTop: 6,
   },
   errorText: {
     fontSize: 13,
-    color: '#e53e3e',
+    color: theme.colors.error,
     marginTop: 6,
   },
   button: {
-    backgroundColor: '#1a1a1a',
-    borderRadius: 14,
+    backgroundColor: theme.colors.primary,
+    borderRadius: theme.radius.button,
     paddingVertical: 18,
     alignItems: 'center',
-    marginTop: 8,
+    marginTop: theme.spacing.xs,
   },
   buttonDisabled: {
     opacity: 0.5,
   },
   buttonText: {
-    color: '#fff',
+    color: theme.colors.primaryForeground,
     fontSize: 16,
     fontWeight: '700',
   },
