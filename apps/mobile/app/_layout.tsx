@@ -1,26 +1,37 @@
 import { Slot, useRouter, useSegments } from 'expo-router'
 import { useEffect } from 'react'
 import { ServicesProvider } from '../src/lib/providers'
-import { useSession } from '../src/hooks/useSession'
+import { useOnboardingStatus } from '../src/hooks/useOnboardingStatus'
 
 function RootLayoutNav() {
-  const { session, loading } = useSession()
+  const { status } = useOnboardingStatus()
   const segments = useSegments()
   const router = useRouter()
 
   useEffect(() => {
-    if (loading) return
+    if (status === 'loading') return
 
-    const inAuthGroup = segments[0] === '(auth)'
+    const inAuth = segments[0] === '(auth)'
+    const inOnboarding = segments[0] === '(onboarding)'
+    const inApp = segments[0] === '(app)'
 
-    if (!session && !inAuthGroup) {
-      // Not signed in — send to sign-in screen
-      router.replace('/(auth)/sign-in')
-    } else if (session && inAuthGroup) {
-      // Signed in — send to app
-      router.replace('/(app)')
+    switch (status) {
+      case 'unauthenticated':
+        if (!inAuth) router.replace('/(auth)/sign-in')
+        break
+      case 'needs-profile':
+        if (!(inOnboarding && segments[1] === 'profile'))
+          router.replace('/(onboarding)/profile')
+        break
+      case 'needs-enrollment':
+        if (!(inOnboarding && segments[1] === 'enroll'))
+          router.replace('/(onboarding)/enroll')
+        break
+      case 'ready':
+        if (!inApp) router.replace('/(app)')
+        break
     }
-  }, [session, loading, segments])
+  }, [status, segments])
 
   return <Slot />
 }
