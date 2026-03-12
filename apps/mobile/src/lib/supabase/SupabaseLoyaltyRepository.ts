@@ -75,6 +75,17 @@ export class SupabaseLoyaltyProgramRepository implements ILoyaltyProgramReposito
     return mapLoyaltyProgram(data)
   }
 
+  async getProgramByEnrollmentCode(code: string): Promise<LoyaltyProgram | null> {
+    const { data, error } = await supabase
+      .from('loyalty_programs')
+      .select('*')
+      .eq('enrollment_code', code.trim().toUpperCase())
+      .eq('is_active', true)
+      .maybeSingle()
+    if (error) throw error
+    return data ? mapLoyaltyProgram(data) : null
+  }
+
   async getPointRules(programId: string): Promise<PointRule[]> {
     const { data, error } = await supabase
       .from('point_rules')

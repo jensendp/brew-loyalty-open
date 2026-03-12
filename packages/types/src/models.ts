@@ -59,6 +59,7 @@ export interface LoyaltyProgram {
   orgId: string
   name: string
   description: string | null
+  enrollmentCode: string | null  // short code members enter to join (e.g. "IRONWOOD")
   isActive: boolean
   createdAt: string
   updatedAt: string

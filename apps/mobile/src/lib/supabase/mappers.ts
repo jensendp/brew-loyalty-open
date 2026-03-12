@@ -42,6 +42,7 @@ export const mapLoyaltyProgram = (row: Row): LoyaltyProgram => ({
   orgId: row.org_id,
   name: row.name,
   description: row.description,
+  enrollmentCode: row.enrollment_code ?? null,
   isActive: row.is_active,
   createdAt: row.created_at,
   updatedAt: row.updated_at,

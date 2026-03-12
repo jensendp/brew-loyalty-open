@@ -39,6 +39,12 @@ export interface ILoyaltyProgramRepository {
   /** Get the active loyalty program for an org. */
   getLoyaltyProgram(orgId: string): Promise<LoyaltyProgram>
 
+  /**
+   * Look up a program by its enrollment code (case-insensitive).
+   * Returns null if no active program has this code.
+   */
+  getProgramByEnrollmentCode(code: string): Promise<LoyaltyProgram | null>
+
   /** Get all active point-earning rules for a program. */
   getPointRules(programId: string): Promise<PointRule[]>
 
