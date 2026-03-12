@@ -2,10 +2,20 @@
   "expo": {
     "name": "Brew Loyalty",
     "slug": "brew-loyalty",
+    "owner": "jensendp",
     "version": "1.0.0",
     "orientation": "portrait",
     "userInterfaceStyle": "automatic",
     "scheme": "brewloyalty",
+    "runtimeVersion": {
+      "policy": "appVersion"
+    },
+    "updates": {
+      "url": "https://u.expo.dev/brew-loyalty",
+      "enabled": true,
+      "checkAutomatically": "ON_LOAD",
+      "fallbackToCacheTimeout": 0
+    },
     "ios": {
       "supportsTablet": false,
       "bundleIdentifier": "com.brewloyalty.app"
@@ -26,6 +36,11 @@
     ],
     "experiments": {
       "typedRoutes": true
+    },
+    "extra": {
+      "eas": {
+        "projectId": ""
+      }
     }
   }
 }
