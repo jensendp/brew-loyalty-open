@@ -4,7 +4,7 @@ Last updated: 2026-03-11
 
 ## 🔄 In Progress
 
-- [ ] **Phase 1: Member Auth & Profile** — onboarding, enrollment screen
+- [ ] **Phase 2: Points Earning** — member card QR, check-in Edge Function, real-time balance
 
 ## 📋 Phase 0 — Foundation ✅
 
@@ -19,16 +19,21 @@ Last updated: 2026-03-11
 - [x] Supabase implementations: SupabaseAuthProvider + all repositories
 - [x] App screens: sign-in, home, card, tiers, rewards (stubs)
 - [x] Expo Router navigation: auth group + app tab group
-- [ ] Create GitHub repository
-- [ ] Add README stub
+- [x] Create GitHub repository (jensendp/brew-loyalty-open)
+- [x] Add README stub
 - [ ] Run `npm install` and `expo start` to verify
 
-## 📋 Phase 1 — Member Auth & Profile
+## 📋 Phase 1 — Member Auth & Profile ✅
 
-- [ ] Configure Supabase Auth (magic link email)
-- [ ] Build onboarding flow (name, birthday)
-- [ ] Build enrollment screen (join by org code/QR)
-- [ ] Build home screen stub
+- [x] Migration 0003: enrollment_code on loyalty_programs
+- [x] useOnboardingStatus hook (loading → unauthenticated → needs-profile → needs-enrollment → ready)
+- [x] useProfile hook (create member profile during onboarding)
+- [x] useEnrollment hook (join program by enrollment code)
+- [x] useHomeData hook (live points, tier, recent transactions)
+- [x] Onboarding screens: profile.tsx + enroll.tsx
+- [x] Root layout routing: full auth → onboard → app flow
+- [x] Home screen wired to live Supabase data
+- [x] Tests: useOnboardingStatus, useProfile, useEnrollment
 
 ## 📋 Phase 2 — Points Earning
 
