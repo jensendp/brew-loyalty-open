@@ -139,9 +139,12 @@ export class SupabaseMemberRepository implements IMemberRepository {
   async createMemberProfile(
     profile: Pick<MemberProfile, 'id' | 'displayName' | 'phone' | 'birthday'>
   ): Promise<MemberProfile> {
+    // Upsert so re-attempts (e.g. routing race on first login) never fail
+    // with a duplicate-key error. display_name is updated in case the user
+    // edits their name before the profile is fully committed.
     const { data, error } = await supabase
       .from('member_profiles')
-      .insert({
+      .upsert({
         id: profile.id,
         display_name: profile.displayName,
         phone: profile.phone,

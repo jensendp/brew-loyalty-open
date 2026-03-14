@@ -16,5 +16,9 @@ export const supabase = createClient(supabaseUrl, supabaseAnonKey, {
     autoRefreshToken: true,
     persistSession: true,
     detectSessionInUrl: false,
+    // Implicit flow sends tokens directly in the URL hash, so no
+    // code-verifier storage is needed across app restarts. This is
+    // the reliable choice for React Native deep-link magic links.
+    flowType: 'implicit',
   },
 })

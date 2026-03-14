@@ -3,8 +3,18 @@
   "compilerOptions": {
     "strict": true,
     "paths": {
-      "@brew-loyalty/types": ["../../packages/types/src/index.ts"],
-      "@brew-loyalty/types/*": ["../../packages/types/src/*"]
+      "@brew-loyalty/types": [
+        "../../packages/types/src/index.ts"
+      ],
+      "@brew-loyalty/types/*": [
+        "../../packages/types/src/*"
+      ]
     }
-  }
+  },
+  "include": [
+    "**/*.ts",
+    "**/*.tsx",
+    ".expo/types/**/*.ts",
+    "expo-env.d.ts"
+  ]
 }

@@ -1,5 +1,5 @@
 import type { MemberEnrollmentWithTier, MemberProfile } from '@brew-loyalty/types'
-import { useEffect, useState } from 'react'
+import { useCallback, useEffect, useState } from 'react'
 import { useServices } from '../lib/providers'
 import { useSession } from './useSession'
 
@@ -14,6 +14,8 @@ interface OnboardingState {
   status: OnboardingStatus
   profile: MemberProfile | null
   enrollment: MemberEnrollmentWithTier | null
+  /** Call after profile creation or enrollment to re-check the funnel state. */
+  refresh: () => void
 }
 
 /**
@@ -21,6 +23,10 @@ interface OnboardingState {
  * Used by the root layout to route to the correct screen.
  *
  * Flow: unauthenticated → needs-profile → needs-enrollment → ready
+ *
+ * Call refresh() after any onboarding step completes to re-check state
+ * and prevent routing races between the screen's explicit navigation and
+ * the root layout's status-driven routing.
  */
 export function useOnboardingStatus(): OnboardingState {
   const { session, loading: sessionLoading } = useSession()
@@ -29,6 +35,9 @@ export function useOnboardingStatus(): OnboardingState {
   const [profile, setProfile] = useState<MemberProfile | null>(null)
   const [enrollment, setEnrollment] = useState<MemberEnrollmentWithTier | null>(null)
   const [dataLoading, setDataLoading] = useState(true)
+  const [refreshKey, setRefreshKey] = useState(0)
+
+  const refresh = useCallback(() => setRefreshKey(k => k + 1), [])
 
   useEffect(() => {
     if (sessionLoading) return
@@ -62,13 +71,13 @@ export function useOnboardingStatus(): OnboardingState {
 
     check()
     return () => { cancelled = true }
-  }, [session?.userId, sessionLoading])
+  }, [session?.userId, sessionLoading, refreshKey])
 
   const loading = sessionLoading || dataLoading
 
-  if (loading) return { status: 'loading', profile: null, enrollment: null }
-  if (!session) return { status: 'unauthenticated', profile: null, enrollment: null }
-  if (!profile) return { status: 'needs-profile', profile: null, enrollment: null }
-  if (!enrollment) return { status: 'needs-enrollment', profile, enrollment: null }
-  return { status: 'ready', profile, enrollment }
+  if (loading) return { status: 'loading', profile: null, enrollment: null, refresh }
+  if (!session) return { status: 'unauthenticated', profile: null, enrollment: null, refresh }
+  if (!profile) return { status: 'needs-profile', profile: null, enrollment: null, refresh }
+  if (!enrollment) return { status: 'needs-enrollment', profile, enrollment: null, refresh }
+  return { status: 'ready', profile, enrollment, refresh }
 }

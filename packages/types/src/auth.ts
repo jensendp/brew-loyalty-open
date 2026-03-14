@@ -33,4 +33,11 @@ export interface IAuthProvider {
    * Returns an unsubscribe function.
    */
   onAuthStateChange(callback: (session: Session | null) => void): Unsubscribe
+
+  /**
+   * Complete a magic link sign-in by exchanging the deep link URL
+   * for a session. Call this when the app receives an auth callback URL
+   * (e.g. brewloyalty://?code=...).
+   */
+  handleDeepLink(url: string): Promise<void>
 }

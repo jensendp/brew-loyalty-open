@@ -5,6 +5,7 @@
  */
 import { useRouter } from 'expo-router'
 import { useState } from 'react'
+import { useOnboardingRefresh } from '../_layout'
 import {
   KeyboardAvoidingView,
   Platform,
@@ -20,6 +21,7 @@ import { theme } from '../../src/config/theme'
 
 export default function EnrollScreen() {
   const router = useRouter()
+  const refresh = useOnboardingRefresh()
   const { session } = useSession()
   const { loading, error, joinByCode } = useEnrollment()
 
@@ -39,6 +41,7 @@ export default function EnrollScreen() {
     if (!validate() || !session) return
     const enrollment = await joinByCode(code, session.userId)
     if (enrollment) {
+      refresh()
       router.replace('/(app)')
     }
   }

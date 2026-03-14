@@ -5,6 +5,7 @@
  */
 import { useRouter } from 'expo-router'
 import { useState } from 'react'
+import { useOnboardingRefresh } from '../_layout'
 import {
   KeyboardAvoidingView,
   Platform,
@@ -19,6 +20,7 @@ import { theme } from '../../src/config/theme'
 
 export default function ProfileScreen() {
   const router = useRouter()
+  const refresh = useOnboardingRefresh()
   const { loading, error, createProfile } = useProfile()
 
   const [displayName, setDisplayName] = useState('')
@@ -41,6 +43,9 @@ export default function ProfileScreen() {
       birthday: birthday.trim() || undefined,
     })
     if (profile) {
+      // Refresh the onboarding status so the root layout sees needs-enrollment
+      // before we navigate — prevents it from routing us back to profile.
+      refresh()
       router.replace('/(onboarding)/enroll')
     }
   }
