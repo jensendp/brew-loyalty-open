@@ -40,7 +40,7 @@ const config = {
   },
   extra: {
     eas: {
-      projectId: process.env.EAS_PROJECT_ID ?? '',
+      projectId: '04e8ac42-029f-4f18-8992-7a7cc395dd09',
     },
   },
   // Only set runtimeVersion and updates when building with EAS.
@@ -49,7 +49,7 @@ const config = {
   ...(IS_EAS && {
     runtimeVersion: { policy: 'appVersion' },
     updates: {
-      url: `https://u.expo.dev/${process.env.EAS_PROJECT_ID ?? ''}`,
+      url: 'https://u.expo.dev/04e8ac42-029f-4f18-8992-7a7cc395dd09',
       enabled: true,
       checkAutomatically: 'ON_LOAD',
       fallbackToCacheTimeout: 0,
